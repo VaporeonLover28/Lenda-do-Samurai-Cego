@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://b65cjs3sngin"]
+
+[ext_resource type="PackedScene" uid="uid://dxnvrnesgagdo" path="res://player.tscn" id="1_d4ink"]
+[ext_resource type="PackedScene" uid="uid://dt10ivhvl670v" path="res://inimigo_base.tscn" id="2_oe1nu"]
+[ext_resource type="Script" path="res://player_vida_label.gd" id="3_4vdp8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbara"]
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_d4ink")]
+position = Vector2(589, 568)
+
+[node name="Chao" type="StaticBody2D" parent="."]
+position = Vector2(590, 661)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Chao"]
+scale = Vector2(220.535, 3.24591)
+shape = SubResource("RectangleShape2D_cbara")
+
+[node name="InimigoBase" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(115, 555)
+
+[node name="InimigoBase2" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(-215, 555)
+
+[node name="InimigoBase3" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(1507, 555)
+lado = 0
+
+[node name="InimigoBase4" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(1818, 555)
+lado = 0
+
+[node name="PlayerVidaLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 10
+theme_override_constants/shadow_offset_y = 5
+theme_override_font_sizes/font_size = 46
+text = "Player Vida: "
+script = ExtResource("3_4vdp8")

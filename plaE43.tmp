@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxnvrnesgagdo"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_qj0ws"]
+[ext_resource type="Texture2D" uid="uid://t6yr2u4asdbb" path="res://ohio.png" id="2_ynix5"]
+[ext_resource type="Texture2D" uid="uid://qdyr2wpm7dbi" path="res://icon.svg" id="3_t2lwr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rhyob"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ynix5")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_t2lwr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ynix5")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 30.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vy6kk"]
+size = Vector2(19.9966, 20.0203)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fhjkj"]
+radius = 151.515
+height = 736.111
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bh138"]
+radius = 234.848
+height = 694.444
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.144, 0.264)
+script = ExtResource("1_qj0ws")
+
+[node name="PlayerSprt" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.90735e-05, -1.52588e-05)
+sprite_frames = SubResource("SpriteFrames_rhyob")
+animation = &"Walk"
+frame_progress = 0.0416667
+
+[node name="PlayerColl" type="CollisionShape2D" parent="."]
+scale = Vector2(23.0039, 22.9766)
+shape = SubResource("RectangleShape2D_vy6kk")
+debug_color = Color(0, 1, 0, 0.419608)
+
+[node name="AttackHitbox" type="Area2D" parent="."]
+
+[node name="AttackColl" type="CollisionShape2D" parent="AttackHitbox"]
+position = Vector2(451.389, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_fhjkj")
+disabled = true
+debug_color = Color(1, 0, 0, 0.419608)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bh138")

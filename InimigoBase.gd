@@ -1,0 +1,110 @@
+extends CharacterBody2D; class_name Inimigo
+
+@export_category("status inimigo")
+@export var velocidade : int
+@export_enum("esquerda", "direita") var lado : int
+@export var dano : int
+@export var vida : int
+@export var idletoatktimer : int
+var playerinsideatk = false
+
+enum {IDLE, WALKING, HURT}
+var walking_state = WALKING
+
+enum {NOATK, ATTACK}
+var input_state = NOATK
+
+func _ready():
+	velocity.x = 1
+	$IdleToAtkTimer.wait_time = idletoatktimer
+	#$IdleToAtkTimer.timeout.connect(Func_IdleToAtkTimer)
+	
+	if lado == 0:
+		$InimigoAttackDetection.scale.x = -1
+		$InimigoAttackHitbox.scale.x = -1
+		$InimigoSpr.flip_h = true
+		self.velocidade *= -1
+	
+	if lado == 1:
+		$InimigoAttackDetection.scale.x = 1
+		$InimigoAttackHitbox.scale.x = 1
+		$InimigoSpr.flip_h = false
+
+func _physics_process(delta):
+	
+	#print("Movimento: " + str(walking_state) + \
+	#", Ação: " + str(input_state) + \
+	#", Animação: " + str($InimigoAnim.current_animation) \
+	#+ ", Detectando: " + str(playerinsideatk))
+	
+	if vida <= 0:
+		queue_free()
+	
+	match walking_state:
+		IDLE:
+			is_idle()
+		WALKING:
+			is_walking()
+		HURT:
+			is_hurt()
+	match input_state:
+		NOATK:
+			is_nothing()
+		ATTACK:
+			is_attacking()
+	move_and_slide()
+
+func is_idle():
+	velocity.x = 0
+	if $IdleToAtkTimer.is_stopped():
+		$IdleToAtkTimer.start()
+	if $InimigoAnim.current_animation != "attack":
+		$InimigoAnim.play("walking")
+
+func is_walking():
+	velocity.x = velocidade
+	if $InimigoAnim.current_animation != "attack":
+		$InimigoAnim.play("walking")
+	if velocity.x == 0:
+		walking_state = IDLE
+		
+	if $InimigoAnim.current_animation == "attack":
+		walking_state = IDLE
+
+func is_hurt():
+	if vida > 0:
+		$InimigoAnim.play("hurt")
+	else:
+		self.queue_free()
+
+func is_nothing():
+	pass
+
+func is_attacking():
+	if $InimigoAnim.current_animation != "attack":
+		$InimigoAnim.play("attack")
+		input_state = NOATK
+		walking_state = IDLE
+
+func _on_inimigo_attack_detection_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		walking_state = IDLE
+		playerinsideatk = true
+
+func _on_inimigo_attack_detection_body_exited(body: Node2D) -> void:
+	if body.name == "Player":
+		playerinsideatk = false
+
+func _on_idle_to_atk_timer_timeout() -> void:
+	if playerinsideatk == true:
+		input_state = ATTACK
+		walking_state = IDLE
+	else:
+		input_state = NOATK
+		walking_state = WALKING
+
+func _on_inimigo_attack_hitbox_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Block_collision") == false and area.is_in_group("Player_hurtbox") == true:
+		area.get_parent().vida -= 1
+	else:
+		print("errou vacilao")

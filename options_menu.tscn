@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://ne6hv2imy6s"]
+
+[ext_resource type="VideoStream" path="res://segredo.ogv" id="1_u6sgg"]
+
+[node name="Options_Menu" type="Node2D"]
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+stream = ExtResource("1_u6sgg")
+volume_db = 5.0
+autoplay = true
+expand = true
