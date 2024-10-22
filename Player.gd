@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var vida = 5
 @export var speed = 200
 var can_walk = true
+var spritemode = "Samurai_"
 
 enum {IDLE, WALKING}
 #Botando o estado inicial como idle
@@ -15,6 +16,20 @@ var inputstate = NOINPUT
 func _physics_process(delta):
 	
 	#print("Movimento: " + str(walkingstate) + ", Ação: " + str(inputstate) + ", Animação: " + str($AnimationPlayer.current_animation))
+	
+	if Input.is_action_just_pressed("placeholder mode") and spritemode == "Samurai_":
+		spritemode = "Igor_"
+	
+	match spritemode:
+		"Samurai_":
+			$PlayerSprt.scale.x = 9
+			$PlayerSprt.scale.y = 6.09
+			$PlayerSprt.offset.x = 6
+			$PlayerSprt.offset.y = -25.5
+		"Igor_":
+			$PlayerSprt.scale.x = 1
+			$PlayerSprt.offset.x = 0
+			$PlayerSprt.offset.y = 0
 	
 	if velocity.x < 0 and can_walk:
 		$AttackHitbox.scale.x = -1
@@ -46,11 +61,11 @@ func is_idle():
 	velocity.x = 0
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 		walkingstate = WALKING
-	if $AnimationPlayer.current_animation != "Attack" and $AnimationPlayer.current_animation != "Block" and inputstate == NOINPUT:
-		$AnimationPlayer.play("Idle")
+	if $AnimationPlayer.current_animation != spritemode + "Attack" and $AnimationPlayer.current_animation != spritemode + "Block" and inputstate == NOINPUT:
+		$AnimationPlayer.play(spritemode + "Idle")
 
 func is_walking():
-	if $AnimationPlayer.current_animation != "Attack" and $AnimationPlayer.current_animation != "Block":
+	if $AnimationPlayer.current_animation != spritemode + "Attack" and $AnimationPlayer.current_animation != spritemode + "Block":
 		if Input.is_action_pressed("Left"):
 			velocity.x = speed * -1
 		if Input.is_action_pressed("Right"):
@@ -58,13 +73,13 @@ func is_walking():
 		if Input.is_action_pressed("Left") == false and Input.is_action_pressed("Right") == false:
 			walkingstate = IDLE
 		if $AnimationPlayer.current_animation != "Walk":
-			$AnimationPlayer.play("Walk")
+			$AnimationPlayer.play(spritemode + "Walk")
 
 func is_nothing():
 	can_walk = true
-	if Input.is_action_just_pressed("Attack") and $AnimationPlayer.current_animation != "Block" and $AnimationPlayer.current_animation != "Attack":
+	if Input.is_action_just_pressed("Attack") and $AnimationPlayer.current_animation != spritemode + "Block" and $AnimationPlayer.current_animation != spritemode + "Attack":
 		inputstate = ATTACKING
-	if Input.is_action_just_pressed("Block") and $AnimationPlayer.current_animation != "Block" and $AnimationPlayer.current_animation != "Attack":
+	if Input.is_action_just_pressed("Block") and $AnimationPlayer.current_animation != spritemode + "Block" and $AnimationPlayer.current_animation != spritemode + "Attack":
 		inputstate = BLOCKING
 
 func is_attacking():
@@ -80,14 +95,14 @@ func is_blocking():
 	Block()
 
 func Attack():
-	if $AnimationPlayer.current_animation != ("Attack"): 
-		$AnimationPlayer.play("Attack")
+	if $AnimationPlayer.current_animation != spritemode + ("Attack"): 
+		$AnimationPlayer.play(spritemode + "Attack")
 		inputstate = NOINPUT
 		can_walk = true
 
 func Block():
-	if $AnimationPlayer.current_animation != ("Block"):
-		$AnimationPlayer.play("Block")
+	if $AnimationPlayer.current_animation != spritemode + ("Block"):
+		$AnimationPlayer.play(spritemode + "Block")
 		inputstate = NOINPUT
 		can_walk = true
 

@@ -181,6 +181,7 @@ height = 182.469
 size = Vector2(21.3645, 20)
 
 [node name="InimigoBase" type="CharacterBody2D" groups=["Inimigo_hurtbox"]]
+collision_layer = 2
 script = ExtResource("1_g66jv")
 velocidade = 100
 lado = 1
@@ -205,12 +206,14 @@ shape = SubResource("CapsuleShape2D_tv6bs")
 
 [node name="InimigoHurtbox" type="Area2D" parent="." groups=["Inimigo_hurtbox"]]
 scale = Vector2(2.05072, 2.1846)
+collision_layer = 2
 
 [node name="InimigoHurtboxColl" type="CollisionShape2D" parent="InimigoHurtbox"]
 shape = SubResource("CapsuleShape2D_t53i6")
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="InimigoAttackDetection" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="InimigoAttackDetectionColl" type="CollisionShape2D" parent="InimigoAttackDetection"]
 position = Vector2(59, 1)
@@ -218,6 +221,7 @@ scale = Vector2(1, 0.876859)
 shape = SubResource("CapsuleShape2D_q02pn")
 
 [node name="InimigoAttackHitbox" type="Area2D" parent="."]
+collision_layer = 2
 
 [node name="InimigoHitboxColl" type="CollisionShape2D" parent="InimigoAttackHitbox"]
 position = Vector2(82, 0)

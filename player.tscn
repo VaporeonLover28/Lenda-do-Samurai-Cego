@@ -9,104 +9,44 @@
 [ext_resource type="Texture2D" uid="uid://qdyr2wpm7dbi" path="res://icon.svg" id="3_t2lwr"]
 [ext_resource type="Texture2D" uid="uid://dekciklh73wsb" path="res://Samurai/Walk.png" id="9_f3hgl"]
 
-[sub_resource type="Animation" id="Animation_jidnk"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_yqcdj"]
+resource_name = "Igor_Attack"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/path = NodePath("PlayerSprt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"idle"]
+"values": [0]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/path = NodePath("AttackHitbox/AttackColl:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [true, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BlockHitbox/BlockColl:disabled")
+tracks/2/path = NodePath("PlayerSprt:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_ur8x1"]
-resource_name = "Samurai_Walk"
-
-[sub_resource type="Animation" id="Animation_61u7b"]
-resource_name = "Igor_Walk"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprt:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"igor_walk"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprt:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_0pwfe"]
-resource_name = "Igor_Idle"
-length = 0.1
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprt:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"igor_idle"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerSprt:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"values": [&"igor_attack"]
 }
 
 [sub_resource type="Animation" id="Animation_so8u0"]
@@ -149,8 +89,105 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_yqcdj"]
-resource_name = "Igor_Attack"
+[sub_resource type="Animation" id="Animation_0pwfe"]
+resource_name = "Igor_Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"igor_idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_61u7b"]
+resource_name = "Igor_Walk"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"igor_walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_jidnk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlockHitbox/BlockColl:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8q2gp"]
+resource_name = "Samurai_Attack"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -159,10 +196,10 @@ tracks/0/path = NodePath("PlayerSprt:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -171,7 +208,7 @@ tracks/1/path = NodePath("AttackHitbox/AttackColl:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
+"times": PackedFloat32Array(0, 0.266667, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -186,17 +223,106 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"igor_attack"]
+"values": [&"attack"]
 }
 
-[sub_resource type="Animation" id="Animation_jqti2"]
-resource_name = "Samurai_Idle"
-
-[sub_resource type="Animation" id="Animation_3ftix"]
-resource_name = "Samurai_Attack"
-
-[sub_resource type="Animation" id="Animation_06j4u"]
+[sub_resource type="Animation" id="Animation_qgtfj"]
 resource_name = "Samurai_Block"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"block"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlockHitbox/BlockColl:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_6325w"]
+resource_name = "Samurai_Idle"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nohh5"]
+resource_name = "Samurai_Walk"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSprt:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"walk"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerSprt:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7s6an"]
 _data = {
@@ -205,10 +331,10 @@ _data = {
 "Igor_Idle": SubResource("Animation_0pwfe"),
 "Igor_Walk": SubResource("Animation_61u7b"),
 "RESET": SubResource("Animation_jidnk"),
-"Samurai_Attack": SubResource("Animation_3ftix"),
-"Samurai_Block": SubResource("Animation_06j4u"),
-"Samurai_Idle": SubResource("Animation_jqti2"),
-"Samurai_Walk": SubResource("Animation_ur8x1")
+"Samurai_Attack": SubResource("Animation_8q2gp"),
+"Samurai_Block": SubResource("Animation_qgtfj"),
+"Samurai_Idle": SubResource("Animation_6325w"),
+"Samurai_Walk": SubResource("Animation_nohh5")
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yc4xs"]
@@ -399,16 +525,17 @@ height = 694.444
 
 [node name="Player" type="CharacterBody2D"]
 scale = Vector2(0.144, 0.264)
+collision_mask = 3
 script = ExtResource("1_qj0ws")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_7s6an")
 }
-autoplay = "Igor_Idle"
+autoplay = "Samurai_Idle"
 
 [node name="PlayerSprt" type="AnimatedSprite2D" parent="."]
-scale = Vector2(6.09, 6.09)
+scale = Vector2(9, 6.09)
 sprite_frames = SubResource("SpriteFrames_rhyob")
 animation = &"idle"
 offset = Vector2(6, -25.5)
@@ -419,6 +546,7 @@ shape = SubResource("CapsuleShape2D_hyuci")
 debug_color = Color(0, 1, 0, 0.419608)
 
 [node name="AttackHitbox" type="Area2D" parent="." groups=["Player_hurtbox"]]
+collision_mask = 3
 
 [node name="AttackColl" type="CollisionShape2D" parent="AttackHitbox"]
 position = Vector2(451.389, 0)
@@ -428,6 +556,7 @@ disabled = true
 debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="BlockHitbox" type="Area2D" parent="." groups=["Block_collision"]]
+collision_mask = 3
 
 [node name="BlockColl" type="CollisionShape2D" parent="BlockHitbox"]
 position = Vector2(270, 0)
@@ -436,6 +565,7 @@ disabled = true
 debug_color = Color(1, 1, 0, 0.419608)
 
 [node name="Hurtbox" type="Area2D" parent="."]
+collision_mask = 3
 
 [node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox" groups=["Player_hurtbox"]]
 rotation = 1.5708

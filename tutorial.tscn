@@ -9,7 +9,8 @@
 [node name="Tutorial" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_d4ink")]
-position = Vector2(589, 568)
+position = Vector2(588, 552)
+scale = Vector2(0.179, 0.328)
 
 [node name="Chao" type="StaticBody2D" parent="."]
 position = Vector2(590, 661)
@@ -20,6 +21,7 @@ shape = SubResource("RectangleShape2D_cbara")
 
 [node name="InimigoBase" parent="." instance=ExtResource("2_oe1nu")]
 position = Vector2(115, 555)
+vida = 1
 
 [node name="InimigoBase2" parent="." instance=ExtResource("2_oe1nu")]
 position = Vector2(-215, 555)
