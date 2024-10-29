@@ -535,10 +535,12 @@ libraries = {
 autoplay = "Samurai_Idle"
 
 [node name="PlayerSprt" type="AnimatedSprite2D" parent="."]
+position = Vector2(-58, 0)
 scale = Vector2(9, 6.09)
 sprite_frames = SubResource("SpriteFrames_rhyob")
 animation = &"idle"
 offset = Vector2(6, -25.5)
+flip_h = true
 
 [node name="PlayerColl" type="CollisionShape2D" parent="."]
 scale = Vector2(23.0039, 22.9766)
@@ -557,6 +559,7 @@ debug_color = Color(1, 0, 0, 0.419608)
 
 [node name="BlockHitbox" type="Area2D" parent="." groups=["Block_collision"]]
 collision_mask = 3
+collision_priority = 2.0
 
 [node name="BlockColl" type="CollisionShape2D" parent="BlockHitbox"]
 position = Vector2(270, 0)
@@ -564,10 +567,10 @@ shape = SubResource("CapsuleShape2D_543rq")
 disabled = true
 debug_color = Color(1, 1, 0, 0.419608)
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." groups=["Player_hurtbox"]]
 collision_mask = 3
 
-[node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox" groups=["Player_hurtbox"]]
+[node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bh138")
 

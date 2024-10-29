@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://b65cjs3sngin"]
+[gd_scene load_steps=6 format=3 uid="uid://b65cjs3sngin"]
 
 [ext_resource type="PackedScene" uid="uid://dxnvrnesgagdo" path="res://player.tscn" id="1_d4ink"]
+[ext_resource type="Texture2D" uid="uid://dxfmvpxievrab" path="res://rect280.png" id="1_whbhs"]
 [ext_resource type="PackedScene" uid="uid://dt10ivhvl670v" path="res://inimigo_base.tscn" id="2_oe1nu"]
 [ext_resource type="Script" path="res://player_vida_label.gd" id="3_4vdp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbara"]
 
 [node name="Tutorial" type="Node2D"]
+
+[node name="Rect280" type="Sprite2D" parent="."]
+position = Vector2(600, 291)
+scale = Vector2(0.33, 0.33)
+texture = ExtResource("1_whbhs")
 
 [node name="Player" parent="." instance=ExtResource("1_d4ink")]
 position = Vector2(588, 552)

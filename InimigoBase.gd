@@ -9,6 +9,10 @@ extends CharacterBody2D; class_name Inimigo
 @export var idletoatktimer : int
 var playerinsideatk = false
 var reduction = 0
+var baserotation = PI
+var windup = baserotation
+var colorwindup = 0
+var playerblockinsarea = false
 
 enum {IDLE, WALKING, HURT}
 var walking_state = WALKING
@@ -47,6 +51,16 @@ func _physics_process(delta):
 			position.x += 3
 		reduction -= 1
 	
+	if $IdleToAtkTimer.is_stopped() == false:
+		colorwindup += 0.01
+		if lado == 1:
+			windup -= 0.01
+		else:
+			windup += 0.01
+	
+	$InimigoSpr.rotation = windup
+	$InimigoSpr.modulate.s = colorwindup
+	
 	if vida <= 0:
 		max_vida += 0.5
 		vida = floor(max_vida)
@@ -77,6 +91,8 @@ func is_idle():
 		$InimigoAnim.play("walking")
 
 func is_walking():
+	windup = baserotation
+	colorwindup = 0
 	velocity.x = velocidade
 	if $InimigoAnim.current_animation != "attack":
 		$InimigoAnim.play("walking")
@@ -98,6 +114,8 @@ func is_nothing():
 func is_attacking():
 	if $InimigoAnim.current_animation != "attack":
 		$InimigoAnim.play("attack")
+		windup = baserotation
+		colorwindup = 0
 		input_state = NOATK
 		walking_state = IDLE
 
@@ -120,9 +138,11 @@ func _on_idle_to_atk_timer_timeout() -> void:
 
 func _on_inimigo_attack_hitbox_area_entered(area: Area2D) -> void:
 	if area.is_in_group("Block_collision") == true:
+		playerblockinsarea = true
+	if playerblockinsarea == true:
 		print("bloqueou")
 		reduction = 50
-	elif area.is_in_group("Block_collision") == false and area.is_in_group("Player_hurtbox") == true:
+	elif playerblockinsarea == false and area.is_in_group("Player_hurtbox") == true:
 		area.get_parent().vida -= 1
 	else:
 		print("errou vacilao")
