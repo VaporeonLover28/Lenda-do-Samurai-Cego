@@ -116,7 +116,7 @@ func Block():
 	#if anim_name == "Attack":
 		#print("attackstarted")
 	#if anim_name == "Block":
-		#print("blockstarted")
+		#print("blockstarted") a
 
 func _on_attack_hitbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Inimigo_hurtbox") == true:
