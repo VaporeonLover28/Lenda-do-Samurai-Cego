@@ -40,6 +40,9 @@ func _physics_process(delta):
 		$AttackHitbox.scale.x = 1
 		$BlockHitbox.scale.x = 1
 		$PlayerSprt.flip_h = false
+		
+	if vida <= 0:
+		get_tree().change_scene_to_file("res://lose_scene.tscn")
 	
 	match walkingstate:
 		IDLE:

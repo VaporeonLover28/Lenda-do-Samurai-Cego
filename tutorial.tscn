@@ -27,38 +27,26 @@ shape = SubResource("RectangleShape2D_cbara")
 
 [node name="InimigoBase" parent="." instance=ExtResource("2_oe1nu")]
 position = Vector2(115, 555)
+velocidade = 80
 vida = 1
 
 [node name="InimigoBase2" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-215, 555)
-
-[node name="InimigoBase5" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-815, 555)
-vida = 1
-
-[node name="InimigoBase6" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-515, 555)
-
-[node name="InimigoBase7" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-51.425, 555)
-vida = 1
-
-[node name="InimigoBase8" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-366.37, 555)
-
-[node name="InimigoBase9" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-644, 555)
-vida = 1
-
-[node name="InimigoBase10" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-972, 555)
+position = Vector2(-352, 555)
+velocidade = 80
 
 [node name="InimigoBase3" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(1507, 555)
+position = Vector2(1403, 555)
+velocidade = 110
 lado = 0
 
 [node name="InimigoBase4" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(1818, 555)
+position = Vector2(1701, 555)
+velocidade = 60
+lado = 0
+
+[node name="InimigoBase5" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(-1065, 554)
+velocidade = 130
 lado = 0
 
 [node name="PlayerVidaLabel" type="Label" parent="."]

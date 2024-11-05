@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://di15ubv00fnsp"]
+
+[ext_resource type="Script" path="res://lose_scene.gd" id="1_x86vc"]
+
+[node name="Lose_scene" type="Node2D"]
+script = ExtResource("1_x86vc")
+
+[node name="button_back" type="Button" parent="."]
+offset_left = 443.0
+offset_top = 439.0
+offset_right = 735.0
+offset_bottom = 497.0
+theme_override_font_sizes/font_size = 36
+text = "Go back to fight!"
+
+[node name="you_lost" type="Label" parent="."]
+offset_left = 456.0
+offset_top = 78.0
+offset_right = 722.0
+offset_bottom = 128.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 36
+text = "You have fallen"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]
