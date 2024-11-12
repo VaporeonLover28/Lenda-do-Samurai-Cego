@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://dm4biuve7pqnc"]
+
+[ext_resource type="Script" path="res://win_scene.gd" id="1_vp0wr"]
+
+[node name="Win_scene" type="Node2D"]
+script = ExtResource("1_vp0wr")
+
+[node name="button_back" type="Button" parent="."]
+offset_left = 332.0
+offset_top = 418.0
+offset_right = 845.0
+offset_bottom = 495.0
+theme_override_font_sizes/font_size = 50
+text = "Take a rest for now..."
+
+[node name="you_win" type="Label" parent="."]
+offset_left = 27.0
+offset_top = 103.0
+offset_right = 1157.0
+offset_bottom = 268.0
+pivot_offset = Vector2(1572, 55)
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 48
+text = "You have protected the village, mighty warrior.
+Farewell."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="button_back" to="." method="_on_button_back_pressed"]

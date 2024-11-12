@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b65cjs3sngin"]
+[gd_scene load_steps=7 format=3 uid="uid://b65cjs3sngin"]
 
+[ext_resource type="Script" path="res://tutorial.gd" id="1_5j1r0"]
 [ext_resource type="PackedScene" uid="uid://dxnvrnesgagdo" path="res://player.tscn" id="1_d4ink"]
 [ext_resource type="Texture2D" uid="uid://dxfmvpxievrab" path="res://rect280.png" id="1_whbhs"]
 [ext_resource type="PackedScene" uid="uid://dt10ivhvl670v" path="res://inimigo_base.tscn" id="2_oe1nu"]
@@ -8,6 +9,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cbara"]
 
 [node name="Tutorial" type="Node2D"]
+script = ExtResource("1_5j1r0")
 
 [node name="Rect280" type="Sprite2D" parent="."]
 position = Vector2(600, 291)

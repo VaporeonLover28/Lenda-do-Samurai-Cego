@@ -62,6 +62,7 @@ func _physics_process(delta):
 	$InimigoSpr.modulate.s = colorwindup
 	
 	if vida <= 0:
+		KillsCounter.enemies_killed += 1
 		max_vida += 0.5
 		vida = floor(max_vida)
 		if lado == 1:

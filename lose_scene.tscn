@@ -6,21 +6,21 @@
 script = ExtResource("1_x86vc")
 
 [node name="button_back" type="Button" parent="."]
-offset_left = 443.0
-offset_top = 439.0
-offset_right = 735.0
-offset_bottom = 497.0
-theme_override_font_sizes/font_size = 36
+offset_left = 398.0
+offset_top = 442.0
+offset_right = 801.0
+offset_bottom = 519.0
+theme_override_font_sizes/font_size = 50
 text = "Go back to fight!"
 
 [node name="you_lost" type="Label" parent="."]
-offset_left = 456.0
-offset_top = 78.0
-offset_right = 722.0
-offset_bottom = 128.0
+offset_left = 171.0
+offset_top = 60.0
+offset_right = 1058.0
+offset_bottom = 225.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 120
 text = "You have fallen"
 horizontal_alignment = 1
 vertical_alignment = 1
