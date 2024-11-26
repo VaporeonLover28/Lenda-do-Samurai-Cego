@@ -17,8 +17,6 @@ scale = Vector2(0.33, 0.33)
 texture = ExtResource("1_whbhs")
 
 [node name="Player" parent="." instance=ExtResource("1_d4ink")]
-position = Vector2(588, 552)
-scale = Vector2(0.179, 0.328)
 
 [node name="Chao" type="StaticBody2D" parent="."]
 position = Vector2(590, 661)
@@ -60,3 +58,6 @@ theme_override_constants/shadow_offset_y = 5
 theme_override_font_sizes/font_size = 46
 text = "Player Vida: "
 script = ExtResource("3_4vdp8")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)

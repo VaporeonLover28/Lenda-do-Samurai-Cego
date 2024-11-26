@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://dxnvrnesgagdo"]
+[gd_scene load_steps=41 format=3 uid="uid://dxnvrnesgagdo"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_qj0ws"]
 [ext_resource type="Texture2D" uid="uid://dng08du3dj4b0" path="res://Untitled16_20240820143830.png" id="2_vbv1j"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ceqq4ub4xr5wi" path="res://Samurai/Protection.png" id="3_8qggu"]
 [ext_resource type="Texture2D" uid="uid://qdyr2wpm7dbi" path="res://icon.svg" id="3_t2lwr"]
 [ext_resource type="Texture2D" uid="uid://dekciklh73wsb" path="res://Samurai/Walk.png" id="9_f3hgl"]
+[ext_resource type="Texture2D" uid="uid://bp6lgysp5wx2c" path="res://branko.png" id="9_uuvki"]
 
 [sub_resource type="Animation" id="Animation_yqcdj"]
 resource_name = "Igor_Attack"
@@ -524,7 +525,7 @@ radius = 234.848
 height = 694.444
 
 [node name="Player" type="CharacterBody2D"]
-scale = Vector2(0.144, 0.264)
+scale = Vector2(0.2, 0.367)
 collision_mask = 3
 script = ExtResource("1_qj0ws")
 
@@ -573,6 +574,25 @@ collision_mask = 3
 [node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bh138")
+
+[node name="light1" type="PointLight2D" parent="."]
+energy = 0.0
+blend_mode = 2
+texture = ExtResource("9_uuvki")
+
+[node name="light2" type="PointLight2D" parent="."]
+scale = Vector2(0.99, 0.99)
+texture = ExtResource("9_uuvki")
+
+[node name="dark1" type="PointLight2D" parent="."]
+scale = Vector2(1.355, 1.355)
+blend_mode = 1
+texture = ExtResource("9_uuvki")
+
+[node name="dark2" type="PointLight2D" parent="."]
+scale = Vector2(1.355, 1.355)
+blend_mode = 1
+texture = ExtResource("9_uuvki")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_animation_player_animation_started"]

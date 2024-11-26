@@ -13,7 +13,18 @@ enum {NOINPUT, ATTACKING, BLOCKING}
 #Botando o estado inicial como noinput
 var inputstate = NOINPUT
 
+func _ready() -> void:
+	position = Vector2(588, 542)
+
 func _physics_process(delta):
+	
+	$dark1.scale = $light1.scale / 1.25
+	$light2.scale = $dark1.scale / 1.25
+	$dark2.scale = $light2.scale / 1.25
+	
+	$dark1.energy = $light1.energy
+	$light2.energy = $light1.energy
+	$dark2.energy = $light1.energy
 	
 	#print("Movimento: " + str(walkingstate) + ", Ação: " + str(inputstate) + ", Animação: " + str($AnimationPlayer.current_animation))
 	
