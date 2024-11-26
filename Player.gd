@@ -22,25 +22,25 @@ func _physics_process(delta):
 	$light2.scale = $dark1.scale / 1.25
 	$dark2.scale = $light2.scale / 1.25
 	
-	$dark1.energy = $light1.energy
+	$dark1.energy = $light1.energy / 1.25
 	$light2.energy = $light1.energy
-	$dark2.energy = $light1.energy
+	$dark2.energy = $light1.energy / 1.25
 	
 	#print("Movimento: " + str(walkingstate) + ", Ação: " + str(inputstate) + ", Animação: " + str($AnimationPlayer.current_animation))
 	
 	if Input.is_action_just_pressed("placeholder mode") and spritemode == "Samurai_":
 		spritemode = "Igor_"
 	
-	match spritemode:
-		"Samurai_":
-			$PlayerSprt.scale.x = 9
-			$PlayerSprt.scale.y = 6.09
-			$PlayerSprt.offset.x = 6
-			$PlayerSprt.offset.y = -25.5
-		"Igor_":
-			$PlayerSprt.scale.x = 1
-			$PlayerSprt.offset.x = 0
-			$PlayerSprt.offset.y = 0
+	#match spritemode:
+		#"Samurai_":
+			#$PlayerSprt.scale.x = 9
+			#$PlayerSprt.scale.y = 6.09
+			#$PlayerSprt.offset.x = 6
+			#$PlayerSprt.offset.y = -25.5
+		#"Igor_":
+			#$PlayerSprt.scale.x = 1
+			#$PlayerSprt.offset.x = 0
+			#$PlayerSprt.offset.y = 0
 	
 	if velocity.x < 0 and can_walk:
 		$AttackHitbox.scale.x = -1

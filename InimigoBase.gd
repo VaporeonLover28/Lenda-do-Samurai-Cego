@@ -43,9 +43,9 @@ func _physics_process(delta):
 	$light2.scale = $dark1.scale / 1.25
 	$dark2.scale = $light2.scale / 1.25
 	
-	$dark1.energy = $light1.energy
+	$dark1.energy = $light1.energy / 1.25
 	$light2.energy = $light1.energy
-	$dark2.energy = $light1.energy
+	$dark2.energy = $light1.energy / 1.25
 	
 	#print("Movimento: " + str(walking_state) + \
 	#", Ação: " + str(input_state) + \

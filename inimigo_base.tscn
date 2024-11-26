@@ -1,10 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://dt10ivhvl670v"]
+[gd_scene load_steps=18 format=3 uid="uid://dt10ivhvl670v"]
 
 [ext_resource type="Script" path="res://InimigoBase.gd" id="1_g66jv"]
 [ext_resource type="Texture2D" uid="uid://bio3v6yf2u6a2" path="res://Untitled19_20240903140425.png" id="2_xy72b"]
 [ext_resource type="Texture2D" uid="uid://djcvmsl7mhvix" path="res://Untitled18_20240903135844.png" id="3_o6akr"]
 [ext_resource type="Script" path="res://label.gd" id="4_083nv"]
 [ext_resource type="Texture2D" uid="uid://bp6lgysp5wx2c" path="res://branko.png" id="5_rlfy3"]
+[ext_resource type="AudioStream" uid="uid://dqpy75un2cql6" path="res://step1.mp3" id="6_t84j4"]
+[ext_resource type="AudioStream" uid="uid://bk31dfsl3hy3t" path="res://step2.mp3" id="7_rdjgt"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k4uo5"]
 animations = [{
@@ -86,6 +88,30 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("fot1:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("fot2:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_4lfi4"]
@@ -178,6 +204,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("light1:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(3, 3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("light1:energy")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 1.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_prlxa"]
 resource_name = "walking"
@@ -228,6 +278,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 1.0, 1.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("fot1:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(-0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("fot2:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.55),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5gotj"]
@@ -332,7 +406,19 @@ scale = Vector2(1.355, 1.355)
 blend_mode = 1
 texture = ExtResource("5_rlfy3")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="fot1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_t84j4")
+volume_db = 6.0
+pitch_scale = 0.8
+max_distance = 750.0
+panning_strength = 3.0
+
+[node name="fot2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_rdjgt")
+volume_db = 6.0
+pitch_scale = 0.6
+max_distance = 750.0
+panning_strength = 0.4
 
 [connection signal="animation_finished" from="InimigoAnim" to="." method="_on_inimigo_anim_animation_finished"]
 [connection signal="body_entered" from="InimigoAttackDetection" to="." method="_on_inimigo_attack_detection_body_entered"]
