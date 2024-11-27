@@ -21,18 +21,27 @@ enum {NOATK, ATTACK}
 var input_state = NOATK
 
 func _ready():
+	
 	vida = max_vida
 	velocity.x = 1
 	$IdleToAtkTimer.wait_time = idletoatktimer
 	#$IdleToAtkTimer.timeout.connect(Func_IdleToAtkTimer)
 	
 	if lado == 0:
+		$fot1.bus = "lefiti"
+		$fot2.bus = "lefiti"
+		$fot1.max_distance = 750
+		$fot2.max_distance = 750
 		$InimigoAttackDetection.scale.x = -1
 		$InimigoAttackHitbox.scale.x = -1
 		$InimigoSpr.flip_h = true
 		self.velocidade *= -1
 	
 	if lado == 1:
+		$fot1.bus = "rraite"
+		$fot2.bus = "rraite"
+		$fot1.max_distance = -750
+		$fot2.max_distance = -750
 		$InimigoAttackDetection.scale.x = 1
 		$InimigoAttackHitbox.scale.x = 1
 		$InimigoSpr.flip_h = false

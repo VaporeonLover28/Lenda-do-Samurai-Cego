@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dxnvrnesgagdo"]
+[gd_scene load_steps=40 format=3 uid="uid://dxnvrnesgagdo"]
 
 [ext_resource type="Script" path="res://Player.gd" id="1_qj0ws"]
 [ext_resource type="Texture2D" uid="uid://dng08du3dj4b0" path="res://Untitled16_20240820143830.png" id="2_vbv1j"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ceqq4ub4xr5wi" path="res://Samurai/Protection.png" id="3_8qggu"]
 [ext_resource type="Texture2D" uid="uid://qdyr2wpm7dbi" path="res://icon.svg" id="3_t2lwr"]
 [ext_resource type="Texture2D" uid="uid://dekciklh73wsb" path="res://Samurai/Walk.png" id="9_f3hgl"]
-[ext_resource type="Texture2D" uid="uid://bp6lgysp5wx2c" path="res://branko.png" id="9_uuvki"]
 
 [sub_resource type="Animation" id="Animation_yqcdj"]
 resource_name = "Igor_Attack"
@@ -226,30 +225,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [&"attack"]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("light1:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.196146, 1),
-"update": 0,
-"values": [Vector2(3, 1.9), Vector2(18, 10.14)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("light1:energy")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_qgtfj"]
 resource_name = "Samurai_Block"
@@ -290,30 +265,6 @@ tracks/2/keys = {
 "update": 1,
 "values": [true, false, true]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("light1:scale")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.196146, 1),
-"update": 0,
-"values": [Vector2(3, 1.9), Vector2(18, 10.14)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("light1:energy")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_6325w"]
 resource_name = "Samurai_Idle"
@@ -343,30 +294,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [0]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("light1:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(0.196146),
-"update": 0,
-"values": [Vector2(3, 1.9)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("light1:energy")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
 
 [sub_resource type="Animation" id="Animation_nohh5"]
 resource_name = "Samurai_Walk"
@@ -395,30 +322,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("light1:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.196146, 1),
-"update": 0,
-"values": [Vector2(3, 1.9), Vector2(18, 10.14)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("light1:energy")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.75, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 1.0, 1.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7s6an"]
@@ -670,28 +573,6 @@ collision_mask = 3
 [node name="HurtboxColl" type="CollisionShape2D" parent="Hurtbox"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bh138")
-
-[node name="light1" type="PointLight2D" parent="."]
-scale = Vector2(3, 1.9)
-energy = 0.0
-blend_mode = 2
-texture = ExtResource("9_uuvki")
-
-[node name="light2" type="PointLight2D" parent="."]
-scale = Vector2(3, 1.69)
-texture = ExtResource("9_uuvki")
-
-[node name="dark1" type="PointLight2D" parent="."]
-scale = Vector2(3, 1.69)
-energy = 0.6
-blend_mode = 1
-texture = ExtResource("9_uuvki")
-
-[node name="dark2" type="PointLight2D" parent="."]
-scale = Vector2(3, 1.69)
-energy = 0.6
-blend_mode = 1
-texture = ExtResource("9_uuvki")
 
 [node name="ear" type="AudioListener2D" parent="."]
 current = true

@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxiwpeph8fxs4"]
+
+[ext_resource type="Texture2D" uid="uid://bp6lgysp5wx2c" path="res://branko.png" id="1_qyh7b"]
+[ext_resource type="Script" path="res://playerlight.gd" id="2_omdsg"]
+
+[node name="playerlight" type="PointLight2D"]
+energy = 0.0
+blend_mode = 2
+texture = ExtResource("1_qyh7b")
+script = ExtResource("2_omdsg")
+
+[node name="outerdark" type="PointLight2D" parent="."]
+blend_mode = 1
+texture = ExtResource("1_qyh7b")
+
+[node name="innerlight" type="PointLight2D" parent="."]
+texture = ExtResource("1_qyh7b")
+
+[node name="innerdark" type="PointLight2D" parent="."]
+blend_mode = 1
+texture = ExtResource("1_qyh7b")
+
+[node name="fadeout" type="Timer" parent="."]
+wait_time = 0.8
+autostart = true
+
+[connection signal="timeout" from="fadeout" to="." method="_on_fadeout_timeout"]

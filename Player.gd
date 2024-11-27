@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
-@export var vida = 5
+@onready var light = preload("res://playerlight.tscn")
+@export var vida = 999999
 @export var speed = 200
 var can_walk = true
 var spritemode = "Samurai_"
@@ -13,18 +14,12 @@ enum {NOINPUT, ATTACKING, BLOCKING}
 #Botando o estado inicial como noinput
 var inputstate = NOINPUT
 
+var emmiting_step = false
+
 func _ready() -> void:
 	position = Vector2(588, 542)
 
 func _physics_process(delta):
-	
-	$dark1.scale = $light1.scale / 1.25
-	$light2.scale = $dark1.scale / 1.25
-	$dark2.scale = $light2.scale / 1.25
-	
-	$dark1.energy = $light1.energy / 1.25
-	$light2.energy = $light1.energy
-	$dark2.energy = $light1.energy / 1.25
 	
 	#print("Movimento: " + str(walkingstate) + ", Ação: " + str(inputstate) + ", Animação: " + str($AnimationPlayer.current_animation))
 	
@@ -79,6 +74,9 @@ func is_idle():
 		$AnimationPlayer.play(spritemode + "Idle")
 
 func is_walking():
+	var light_inst = light.instantiate()
+	$"..".add_child(light_inst)
+	light_inst.position = Vector2(position.x, position.y + 20)
 	if $AnimationPlayer.current_animation != spritemode + "Attack" and $AnimationPlayer.current_animation != spritemode + "Block":
 		if Input.is_action_pressed("Left"):
 			velocity.x = speed * -1
