@@ -1,20 +1,20 @@
 extends PointLight2D
 
-var growth = 6
+var growth = 1
 var fading = false
 var appearing = 1
 var fade = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$outerdark.scale = scale / 1.25
+	$innerlight.scale = scale / 1.5
+	$innerdark.scale = scale / 1.75
+	
 	energy = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	$outerdark.scale = scale / 1.25
-	$innerlight.scale = $outerdark.scale / 1.25
-	$innerdark.scale = $innerlight.scale / 1.25
-	
 	$outerdark.energy = energy / 1.25
 	$innerlight.energy = energy
 	$innerdark.energy = energy / 1.25
@@ -24,8 +24,8 @@ func _process(delta: float) -> void:
 		appearing -= 0.01
 	
 	if growth > 0:
-		scale.x += 0.01
-		scale.y += 0.01
+		scale.x += 0.03
+		scale.y += 0.03
 		growth -= 0.01
 	else: 
 		queue_free()

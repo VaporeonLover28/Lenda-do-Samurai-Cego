@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck2mq8y7nvkhb"]
+
+[ext_resource type="PackedScene" uid="uid://bxiwpeph8fxs4" path="res://playerlight.tscn" id="1_7sk7e"]
+[ext_resource type="Texture2D" uid="uid://dxfmvpxievrab" path="res://rect280.png" id="2_rj6jl"]
+
+[node name="lighttest" type="Node2D"]
+
+[node name="playerlight" parent="." instance=ExtResource("1_7sk7e")]
+position = Vector2(576, 339)
+
+[node name="Rect280" type="Sprite2D" parent="."]
+position = Vector2(571, 332)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_rj6jl")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0, 0, 0, 1)

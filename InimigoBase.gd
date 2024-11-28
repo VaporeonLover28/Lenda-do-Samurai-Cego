@@ -7,15 +7,17 @@ extends CharacterBody2D; class_name Inimigo
 @export var max_vida : float = 1
 @export var vida : int
 @export var idletoatktimer : int
+@onready var light = preload("res://playerlight.tscn")
 var playerinsideatk = false
 var reduction = 0
 var baserotation = PI
 var windup = baserotation
 var colorwindup = 0
 var playerblockinsarea = false
+var canstep = true
 
 enum {IDLE, WALKING, HURT}
-var walking_state = WALKING
+var walking_state = IDLE
 
 enum {NOATK, ATTACK}
 var input_state = NOATK
@@ -28,6 +30,7 @@ func _ready():
 	#$IdleToAtkTimer.timeout.connect(Func_IdleToAtkTimer)
 	
 	if lado == 0:
+		walking_state = WALKING
 		$fot1.bus = "lefiti"
 		$fot2.bus = "lefiti"
 		$fot1.max_distance = 750
@@ -38,6 +41,8 @@ func _ready():
 		self.velocidade *= -1
 	
 	if lado == 1:
+		await get_tree().create_timer(0.25).timeout
+		walking_state = WALKING
 		$fot1.bus = "rraite"
 		$fot2.bus = "rraite"
 		$fot1.max_distance = -750
@@ -101,6 +106,22 @@ func _physics_process(delta):
 			is_attacking()
 	move_and_slide()
 
+func steps():
+	var light_inst = light.instantiate()
+	canstep = false
+	if $fot1.playing == false:
+		$fot1.play()
+		$"..".add_child(light_inst)
+		light_inst.position = Vector2(position.x, position.y + 20)
+	await get_tree().create_timer(1).timeout
+	light_inst = light.instantiate()
+	if $fot2.playing == false:
+		$fot2.play()
+		$"..".add_child(light_inst)
+		light_inst.position = Vector2(position.x, position.y + 20)
+	await get_tree().create_timer(1).timeout
+	canstep = true
+
 func is_idle():
 	velocity.x = 0
 	if $IdleToAtkTimer.is_stopped():
@@ -109,16 +130,12 @@ func is_idle():
 		$InimigoAnim.play("walking")
 
 func is_walking():
+	steps()
 	windup = baserotation
 	colorwindup = 0
 	velocity.x = velocidade
 	if $InimigoAnim.current_animation != "attack":
 		$InimigoAnim.play("walking")
-	if velocity.x == 0:
-		walking_state = IDLE
-		
-	if $InimigoAnim.current_animation == "attack":
-		walking_state = IDLE
 
 func is_hurt():
 	if vida > 0:

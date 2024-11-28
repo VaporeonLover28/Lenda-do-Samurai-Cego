@@ -2,11 +2,11 @@
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_rkkn1"]
 resource_name = "Panner"
-pan = -0.7
+pan = -1.0
 
 [sub_resource type="AudioEffectPanner" id="AudioEffectPanner_l482y"]
 resource_name = "Panner"
-pan = 0.7
+pan = 1.0
 
 [resource]
 bus/1/name = &"lefiti"

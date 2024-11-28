@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var speed = 200
 var can_walk = true
 var spritemode = "Samurai_"
+var canstep = true
 
 enum {IDLE, WALKING}
 #Botando o estado inicial como idle
@@ -67,16 +68,33 @@ func _physics_process(delta):
 	move_and_slide()
 
 func is_idle():
+	$foot1.stop()
+	$foot2.stop()
 	velocity.x = 0
 	if Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 		walkingstate = WALKING
 	if $AnimationPlayer.current_animation != spritemode + "Attack" and $AnimationPlayer.current_animation != spritemode + "Block" and inputstate == NOINPUT:
 		$AnimationPlayer.play(spritemode + "Idle")
 
-func is_walking():
+func steps():
 	var light_inst = light.instantiate()
-	$"..".add_child(light_inst)
-	light_inst.position = Vector2(position.x, position.y + 20)
+	canstep = false
+	if $foot1.playing == false:
+		$foot1.play()
+		$"..".add_child(light_inst)
+		light_inst.position = Vector2(position.x, position.y + 20)
+	await get_tree().create_timer(1).timeout
+	light_inst = light.instantiate()
+	if $foot2.playing == false:
+		$foot2.play()
+		$"..".add_child(light_inst)
+		light_inst.position = Vector2(position.x, position.y + 20)
+	await get_tree().create_timer(1).timeout
+	canstep = true
+
+func is_walking():
+	if canstep == true:
+		steps()
 	if $AnimationPlayer.current_animation != spritemode + "Attack" and $AnimationPlayer.current_animation != spritemode + "Block":
 		if Input.is_action_pressed("Left"):
 			velocity.x = speed * -1

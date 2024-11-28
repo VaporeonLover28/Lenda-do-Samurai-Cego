@@ -26,38 +26,40 @@ scale = Vector2(220.535, 3.24591)
 shape = SubResource("RectangleShape2D_cbara")
 
 [node name="InimigoBase" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(115, 555)
+position = Vector2(21, 555)
 velocidade = 80
 vida = 1
 
 [node name="InimigoBase2" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-352, 555)
+position = Vector2(-446, 555)
 velocidade = 80
 
+[node name="InimigoBase5" parent="." instance=ExtResource("2_oe1nu")]
+position = Vector2(-879, 554)
+velocidade = 130
+lado = 0
+
 [node name="InimigoBase3" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(1403, 555)
+position = Vector2(1112, 555)
 velocidade = 110
 lado = 0
 
 [node name="InimigoBase4" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(1701, 555)
+position = Vector2(1410, 555)
 velocidade = 60
 lado = 0
 
-[node name="InimigoBase5" parent="." instance=ExtResource("2_oe1nu")]
-position = Vector2(-1065, 554)
-velocidade = 130
-lado = 0
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
 
-[node name="PlayerVidaLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerVidaLabel" type="Label" parent="CanvasLayer"]
+offset_right = 272.0
+offset_bottom = 64.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_x = 10
 theme_override_constants/shadow_offset_y = 5
 theme_override_font_sizes/font_size = 46
 text = "Player Vida: "
 script = ExtResource("3_4vdp8")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0, 0, 0, 1)
