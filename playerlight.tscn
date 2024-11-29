@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://playerlight.gd" id="2_omdsg"]
 
 [node name="playerlight" type="PointLight2D"]
+top_level = true
 energy = 0.0
 texture = ExtResource("1_qyh7b")
 script = ExtResource("2_omdsg")

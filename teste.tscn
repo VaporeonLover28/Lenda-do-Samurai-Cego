@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://s3aurd3lw66b"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_abse6"]
+[ext_resource type="Texture2D" uid="uid://dffyfm0dhpur0" path="res://teste luz.png" id="2_0bmt6"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_abse6")
+metadata/_edit_vertical_guides_ = [694.0]
+
+[node name="TesteLuz" type="Sprite2D" parent="."]
+position = Vector2(359, 340)
+scale = Vector2(0.165, 0.165)
+texture = ExtResource("2_0bmt6")

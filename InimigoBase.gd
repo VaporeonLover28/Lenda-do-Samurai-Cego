@@ -15,6 +15,8 @@ var windup = baserotation
 var colorwindup = 0
 var playerblockinsarea = false
 var canstep = true
+var ladosimplifier = 0
+var goto = Vector2(position.x + 50, position.y)
 
 enum {IDLE, WALKING, HURT}
 var walking_state = IDLE
@@ -24,8 +26,9 @@ var input_state = NOATK
 
 func _ready():
 	
+	var light_inst = light.instantiate()
+	add_child(light_inst)
 	vida = max_vida
-	velocity.x = 1
 	$IdleToAtkTimer.wait_time = idletoatktimer
 	#$IdleToAtkTimer.timeout.connect(Func_IdleToAtkTimer)
 	
@@ -39,6 +42,8 @@ func _ready():
 		$InimigoAttackHitbox.scale.x = -1
 		$InimigoSpr.flip_h = true
 		self.velocidade *= -1
+		goto *= -1
+		ladosimplifier = -1
 	
 	if lado == 1:
 		await get_tree().create_timer(0.25).timeout
@@ -50,16 +55,12 @@ func _ready():
 		$InimigoAttackDetection.scale.x = 1
 		$InimigoAttackHitbox.scale.x = 1
 		$InimigoSpr.flip_h = false
+		goto *= 1
+		ladosimplifier = 1
+	
+	goto = position.x + 50 * ladosimplifier
 
 func _physics_process(delta):
-	
-	$dark1.scale = $light1.scale / 1.25
-	$light2.scale = $dark1.scale / 1.25
-	$dark2.scale = $light2.scale / 1.25
-	
-	$dark1.energy = $light1.energy / 1.25
-	$light2.energy = $light1.energy
-	$dark2.energy = $light1.energy / 1.25
 	
 	#print("Movimento: " + str(walking_state) + \
 	#", Ação: " + str(input_state) + \
@@ -107,18 +108,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func steps():
-	var light_inst = light.instantiate()
+	print(position)
+	print(goto)
 	canstep = false
 	if $fot1.playing == false:
 		$fot1.play()
-		$"..".add_child(light_inst)
-		light_inst.position = Vector2(position.x, position.y + 20)
+		position = position.lerp(goto, 0.1)
 	await get_tree().create_timer(1).timeout
-	light_inst = light.instantiate()
 	if $fot2.playing == false:
 		$fot2.play()
-		$"..".add_child(light_inst)
-		light_inst.position = Vector2(position.x, position.y + 20)
+		position = position.lerp(goto, 0.1)
 	await get_tree().create_timer(1).timeout
 	canstep = true
 
@@ -133,7 +132,6 @@ func is_walking():
 	steps()
 	windup = baserotation
 	colorwindup = 0
-	velocity.x = velocidade
 	if $InimigoAnim.current_animation != "attack":
 		$InimigoAnim.play("walking")
 
