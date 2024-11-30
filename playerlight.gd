@@ -17,24 +17,31 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	
+	if energy < 0:
+		energy = 0
+	
+	if get_parent().name == "Player":
+		print("appearing: " + str(appearing) + ", energy: " + str(energy) + ", growth: " + str(growth) + ", fade: " + str(fade))
+	
 	$outerdark.energy = energy / 1.25
 	$innerlight.energy = energy
 	$innerdark.energy = energy / 1.25
 	
 	if appearing > 0 and energy < 1:
-		energy += 0.01
-		appearing -= 0.01
+		energy += 0.03
+		appearing -= 0.03
 	
 	if fade > 0:
-		scale.x += 0.03
-		scale.y += 0.03
+		scale.x += 0.08
+		scale.y += 0.08
 		growth -= 0.01
 	else: 
 		reset()
 	
 	if fading == true and fade > 0:
-		energy -= 0.01
-		fade -= 0.01
+		energy -= 0.03
+		fade -= 0.02
 
 func reset():
 	scale = Vector2(1,1)

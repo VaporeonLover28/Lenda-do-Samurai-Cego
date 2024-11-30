@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var light = preload("res://playerlight.tscn")
+@onready var light_inst = light.instantiate()
 @export var vida = 999999
 @export var speed = 200
 var can_walk = true
@@ -19,6 +20,8 @@ var emmiting_step = false
 
 func _ready() -> void:
 	position = Vector2(588, 542)
+	
+	add_child(light_inst)
 
 func _physics_process(delta):
 	
@@ -77,17 +80,15 @@ func is_idle():
 		$AnimationPlayer.play(spritemode + "Idle")
 
 func steps():
-	var light_inst = light.instantiate()
+	
 	canstep = false
 	if $foot1.playing == false:
 		$foot1.play()
-		$"..".add_child(light_inst)
 		light_inst.position = Vector2(position.x, position.y + 20)
 	await get_tree().create_timer(1).timeout
 	light_inst = light.instantiate()
 	if $foot2.playing == false:
 		$foot2.play()
-		$"..".add_child(light_inst)
 		light_inst.position = Vector2(position.x, position.y + 20)
 	await get_tree().create_timer(1).timeout
 	canstep = true

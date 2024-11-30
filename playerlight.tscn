@@ -5,7 +5,6 @@
 
 [node name="playerlight" type="PointLight2D"]
 top_level = true
-energy = 0.0
 texture = ExtResource("1_qyh7b")
 script = ExtResource("2_omdsg")
 
@@ -21,7 +20,7 @@ blend_mode = 1
 texture = ExtResource("1_qyh7b")
 
 [node name="fadeout" type="Timer" parent="."]
-wait_time = 0.8
+wait_time = 0.5
 autostart = true
 
 [connection signal="timeout" from="fadeout" to="." method="_on_fadeout_timeout"]

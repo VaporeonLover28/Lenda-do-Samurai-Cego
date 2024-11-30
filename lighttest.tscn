@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck2mq8y7nvkhb"]
+[gd_scene load_steps=4 format=3 uid="uid://ck2mq8y7nvkhb"]
 
 [ext_resource type="PackedScene" uid="uid://bxiwpeph8fxs4" path="res://playerlight.tscn" id="1_7sk7e"]
 [ext_resource type="Script" path="res://lighttest.gd" id="1_mgrlg"]
+[ext_resource type="Texture2D" uid="uid://t6yr2u4asdbb" path="res://ohio.png" id="3_alcfh"]
 
 [node name="lighttest" type="Node2D"]
+position = Vector2(582, 308)
 script = ExtResource("1_mgrlg")
 
 [node name="playerlight" parent="." instance=ExtResource("1_7sk7e")]
+position = Vector2(583, 307)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
+
+[node name="Ohio" type="Sprite2D" parent="."]
+texture = ExtResource("3_alcfh")
 
 [editable path="playerlight"]

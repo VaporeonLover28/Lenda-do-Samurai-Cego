@@ -16,7 +16,8 @@ var colorwindup = 0
 var playerblockinsarea = false
 var canstep = true
 var ladosimplifier = 0
-var goto = Vector2(position.x + 50, position.y)
+#var goto = Vector2(position.x + 50, position.y)
+var t
 
 enum {IDLE, WALKING, HURT}
 var walking_state = IDLE
@@ -42,7 +43,7 @@ func _ready():
 		$InimigoAttackHitbox.scale.x = -1
 		$InimigoSpr.flip_h = true
 		self.velocidade *= -1
-		goto *= -1
+		#goto *= -1
 		ladosimplifier = -1
 	
 	if lado == 1:
@@ -55,12 +56,12 @@ func _ready():
 		$InimigoAttackDetection.scale.x = 1
 		$InimigoAttackHitbox.scale.x = 1
 		$InimigoSpr.flip_h = false
-		goto *= 1
+		#goto *= 1
 		ladosimplifier = 1
-	
-	goto = position.x + 50 * ladosimplifier
 
 func _physics_process(delta):
+	t = 0.9 * delta
+	position = position.lerp($movementtarget.global_position, t)
 	
 	#print("Movimento: " + str(walking_state) + \
 	#", Ação: " + str(input_state) + \
@@ -92,6 +93,8 @@ func _physics_process(delta):
 			position.x = -300
 		else:
 			position.x = 1452
+		$movementtarget.position.x = 0
+		velocity.x = 0
 	
 	match walking_state:
 		IDLE:
@@ -108,16 +111,16 @@ func _physics_process(delta):
 	move_and_slide()
 
 func steps():
-	print(position)
-	print(goto)
+	#print(position)
+	#print(goto)
 	canstep = false
 	if $fot1.playing == false:
 		$fot1.play()
-		position = position.lerp(goto, 0.1)
+		$movementtarget.position.x += 50 * ladosimplifier
 	await get_tree().create_timer(1).timeout
 	if $fot2.playing == false:
 		$fot2.play()
-		position = position.lerp(goto, 0.1)
+		$movementtarget.position.x += 50 * ladosimplifier
 	await get_tree().create_timer(1).timeout
 	canstep = true
 
@@ -129,7 +132,8 @@ func is_idle():
 		$InimigoAnim.play("walking")
 
 func is_walking():
-	steps()
+	if canstep == true:
+		steps()
 	windup = baserotation
 	colorwindup = 0
 	if $InimigoAnim.current_animation != "attack":

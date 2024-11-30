@@ -1,6 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://dt10ivhvl670v"]
+[gd_scene load_steps=19 format=3 uid="uid://dt10ivhvl670v"]
 
 [ext_resource type="Script" path="res://InimigoBase.gd" id="1_g66jv"]
+[ext_resource type="Script" path="res://movementtarget.gd" id="2_mfsx4"]
+[ext_resource type="Texture2D" uid="uid://t6yr2u4asdbb" path="res://ohio.png" id="2_vcoyy"]
 [ext_resource type="Texture2D" uid="uid://bio3v6yf2u6a2" path="res://Untitled19_20240903140425.png" id="2_xy72b"]
 [ext_resource type="Texture2D" uid="uid://djcvmsl7mhvix" path="res://Untitled18_20240903135844.png" id="3_o6akr"]
 [ext_resource type="Script" path="res://label.gd" id="4_083nv"]
@@ -66,7 +68,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = true
+tracks/3/enabled = false
 tracks/3/path = NodePath("fot1:playing")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -78,7 +80,7 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
+tracks/4/enabled = false
 tracks/4/path = NodePath("fot2:playing")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
@@ -238,6 +240,15 @@ lado = 1
 dano = 1
 vida = 3
 idletoatktimer = 1
+
+[node name="movementtarget" type="Node2D" parent="."]
+top_level = true
+scale = Vector2(0.14, 0.14)
+script = ExtResource("2_mfsx4")
+
+[node name="Sprite2D" type="Sprite2D" parent="movementtarget"]
+visible = false
+texture = ExtResource("2_vcoyy")
 
 [node name="InimigoSpr" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
